@@ -1,5 +1,5 @@
 var http = require('http');
-var dispatcher = require("./dispatcher.js");
+var dispatcher = require("./src/dispatcher.js");
 const PORT=8080;
 
 var server = http.createServer(handleRequest);
