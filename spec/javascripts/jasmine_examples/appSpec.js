@@ -1,3 +1,6 @@
+var price = require('../../../src/price.js'),
+    quantity = require('../../../src/quantity.js');
+
 describe('App', function() {
   const results = [ { price: 10, currency_code: 'USD', quantity: 15 },
                   { price: 20, currency_code: 'GBP', quantity: 10 },
@@ -7,7 +10,7 @@ describe('App', function() {
   describe('#averagePrice', function () {
     it('returns the averagePrice of listings', function() {
       var averagePrice = '24.17';
-      expect(app.averagePrice(results)).toEqual(averagePrice);
+      expect(price.averagePrice(results)).toEqual(averagePrice);
     });
   });
 
@@ -20,7 +23,7 @@ describe('App', function() {
                                     quantity: 15
                                   }
                                 };
-      expect(app.minPriceAndListing(results)).toEqual(minPriceAndListing);
+      expect(price.minPriceAndListing(results)).toEqual(minPriceAndListing);
     });
   });
 
@@ -33,14 +36,14 @@ describe('App', function() {
                                    quantity: 5
                                   }
                                };
-      expect(app.maxPriceAndListing(results)).toEqual(maxPriceAndListing);
+      expect(price.maxPriceAndListing(results)).toEqual(maxPriceAndListing);
     });
   });
 
   describe('#averageQuantity', function () {
     it('returns the averagePrice of listings', function() {
       var averageQuantity = 10;
-      expect(app.averageQuantity(results)).toEqual(averageQuantity);
+      expect(quantity.averageQuantity(results)).toEqual(averageQuantity);
     });
   });
 
@@ -53,7 +56,7 @@ describe('App', function() {
                                         quantity: 5
                                       }
                                   };
-      expect(app.minQuantityAndListing(results)).toEqual(minQuantityAndListing);
+      expect(quantity.minQuantityAndListing(results)).toEqual(minQuantityAndListing);
     });
   });
 
@@ -66,7 +69,7 @@ describe('App', function() {
                                         quantity: 15
                                       }
                                   };
-      expect(app.maxQuantityAndListing(results)).toEqual(maxQuantityAndListing);
+      expect(quantity.maxQuantityAndListing(results)).toEqual(maxQuantityAndListing);
     });
   });
 
