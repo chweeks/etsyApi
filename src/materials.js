@@ -5,8 +5,8 @@ materials.topFiveMaterials = function(listings) {
 }
 
 materials.listingsWithCommonMaterials = function(listings) {
-  const materials = topFiveMaterials(listings);
-  return materials.map(material => filterByMaterial(listings, material));
+  const materials = this.topFiveMaterials(listings);
+  return listings.filter(listing => listingHasMaterials(listing, materials));
 }
 
 function getMaterials(listings) {
@@ -15,7 +15,7 @@ function getMaterials(listings) {
 
 function groupMaterials(listings) {
   const materials = getMaterials(listings);
-  const tallies = {}
+  const tallies = {};
   materials.forEach(material => {
     if (tallies[material]) {
       tallies[material] += 1;
@@ -36,8 +36,13 @@ function sortMaterials(listings) {
   return array.sort((a, b) => b[1] - a[1]);
 }
 
-function filterByMaterial(listings, material) {
-  return listings.filter(listing => listing.materials.indexOf(material) >= 0);
+function listingHasMaterial(listing, material) {
+  return listing.materials.indexOf(material) >= 0;
+}
+
+function listingHasMaterials(listing, materials) {
+  const tests = materials.map(material => listingHasMaterial(listing, material));
+  return tests.reduce((a, b) => a || b, false);
 }
 
 module.exports = materials;

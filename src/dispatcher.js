@@ -42,6 +42,7 @@ dispatcher.onGet("/materials", function(req, res) {
     var data = JSON.parse(body).results;
     var results = {};
     results['top_five_materials'] = materials.topFiveMaterials(data);
+    results['listings_with_common_materials'] = materials.listingsWithCommonMaterials(data);
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end(JSON.stringify(results));
   });
