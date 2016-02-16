@@ -5,6 +5,7 @@
   "main": "web_server.js",
   "dependencies": {
     "httpdispatcher": "^1.0.0",
+    "jasmine": "^2.4.1",
     "request": "^2.69.0"
   },
   "devDependencies": {},
