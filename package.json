@@ -4,7 +4,8 @@
   "description": "",
   "main": "web_server.js",
   "dependencies": {
-    "httpdispatcher": "^1.0.0"
+    "httpdispatcher": "^1.0.0",
+    "request": "^2.69.0"
   },
   "devDependencies": {},
   "scripts": {
