@@ -15,9 +15,11 @@ dispatcher.onGet("/", function(req, res) {
 
 dispatcher.onGet("/price", function(req, res) {
   request(URL, function(error, response, body) {
-    var data = JSON.parse(body);
-    var results = data.results;
-    results = app.averagePrice(results)
+    var data = JSON.parse(body).results;
+    var results = [];
+    results.push(app.averagePrice(data));
+    results.push(app.maxPriceAndListing(data));
+    results.push(app.minPriceAndListing(data));
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end(JSON.stringify(results));
   });
