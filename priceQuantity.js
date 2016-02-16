@@ -39,7 +39,7 @@ function minValueAndListing (listings, valueFunc) {
 // top level functions
 
 app.averagePrice = function (listings) {
-  return averageValue(listings, prices);
+  return averageValue(listings, prices).toFixed(2);
 }
 
 app.averageQuantity = function (listings) {
