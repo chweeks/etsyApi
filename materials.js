@@ -5,10 +5,15 @@ const results = [ { listing_id: '11111', materials: ['wool', 'cotton', 'paper', 
                   { listing_id: '55555', materials: ['cotton', 'tin'] },
                 ]
 
+materials = {};
+
+app.topFiveMaterials = function(listings) {
+  return sortMaterials(listings).slice(0, 5).map(a => a[0]);
+}
+
 function getMaterials(listings) {
   return listings.reduce((materials, listing) => materials.concat(listing.materials), []);
 }
-
 
 function groupMaterials(listings) {
   const materials = getMaterials(listings);
@@ -33,10 +38,6 @@ function sortMaterials(listings) {
   return array.sort((a, b) => b[1] - a[1]);
 }
 
-function topFiveMaterials(listings) {
-  return sortMaterials(listings).slice(0, 5).map(a => a[0]);
-}
-
 function filterByMaterial(listings, material) {
   return listings.filter(listing => listing.materials.indexOf(material) >= 0);
 }
@@ -46,8 +47,4 @@ function listingsWithCommonMaterials(listings) {
   return materials.map(material => filterByMaterial(listings, material));
 }
 
-console.log(getMaterials(results));
-console.log(sortMaterials(results));
-console.log(topFiveMaterials(results));
-console.log(filterByMaterial(results, 'aluminium'))
-console.log(listingsWithCommonMaterials(results))
+modules.export = materials;
