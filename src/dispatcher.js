@@ -4,6 +4,7 @@ var price = require('./price.js');
 var quantity = require('./quantity.js');
 var materials = require('./materials.js');
 var tags = require('./tags.js');
+var categories = require('./categories.js');
 
 const URL= "https://openapi.etsy.com/v2/listings/active?api_key=j3k97n7im670ejskv8ij7nip";
 
@@ -56,6 +57,12 @@ dispatcher.onGet("/tags", function(req, res) {
 });
 
 dispatcher.onGet("/categories", function(req, res) {
+  request(URL, function(error, response, body) {
+    var data = JSON.parse(body).results;
+    var results = {};
+    results = categories.categoryFrequencies(data);
+    res.end(JSON.stringify(results));
+  });
 });
 
 module.exports = dispatcher;
