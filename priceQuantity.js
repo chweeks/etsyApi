@@ -39,16 +39,16 @@ function minValueAndListing (listings, valueFunc) {
 // top level functions
 
 app.averagePrice = function (listings) {
-  return { average_price_in_USD: averageValue(listings, prices) };
+  return averageValue(listings, prices);
 }
 
 app.averageQuantity = function (listings) {
-  return { average_quantity: averageValue(listings, quants) };
+  return averageValue(listings, quants);
 }
 
 app.maxPriceAndListing = function (listings) {
   const max = maxValueAndListing(listings, USDprice);
-  return { max_price_in_USD: USDprice(max), listing: max };
+  return { price_USD: USDprice(max), listing: max };
 }
 
 app.maxQuantityAndListing = function (listings) {
@@ -58,7 +58,7 @@ app.maxQuantityAndListing = function (listings) {
 
 app.minPriceAndListing = function (listings) {
   const min = minValueAndListing(listings, USDprice);
-  return { min_price_in_USD: USDprice(min), listing: min };
+  return { price_USD: USDprice(min), listing: min };
 }
 
 app.minQuantityAndListing = function (listings) {

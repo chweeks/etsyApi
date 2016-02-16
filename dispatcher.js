@@ -5,29 +5,33 @@ const URL= "https://openapi.etsy.com/v2/listings/active?api_key=j3k97n7im670ejsk
 
 dispatcher.onGet("/", function(req, res) {
   request(URL, function(error, response, body) {
-    var data = JSON.parse(body);
-    var results = data.results;
-    results = app.averagePrice(results)
     res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end(JSON.stringify(results));
+    res.end('home page')
   });
 });
 
 dispatcher.onGet("/price", function(req, res) {
   request(URL, function(error, response, body) {
     var data = JSON.parse(body).results;
-    var results = [];
-    results.push(app.averagePrice(data));
-    results.push(app.maxPriceAndListing(data));
-    results.push(app.minPriceAndListing(data));
+    var results = {};
+    results['average_price_in_USD'] = app.averagePrice(data);
+    results['highest_price'] = app.maxPriceAndListing(data);
+    results['lowest_price'] = app.minPriceAndListing(data);
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end(JSON.stringify(results));
   });
 });
 
 dispatcher.onGet("/quantity", function(req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Quantity Page');
+  request(URL, function(error, response, body) {
+    var data = JSON.parse(body).results;
+    var results = {};
+    results['average_quantity'] = app.averageQuantity(data);
+    results['highest_quantity'] = app.maxQuantityAndListing(data);
+    results['lowest_quantity'] = app.minQuantityAndListing(data);
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end(JSON.stringify(results));
+  });
 });
 
 dispatcher.onGet("/materials", function(req, res) {
